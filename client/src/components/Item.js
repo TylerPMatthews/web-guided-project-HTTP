@@ -1,35 +1,42 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { Route, NavLink, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import ItemDescription from './ItemDescription';
 import ItemShipping from './ItemShipping';
+import Popup from './Popup';
 
 function Item(props) {
+  const [ showPopup, setShowPopup] = useState(false);
+
   const { push } = useHistory();
   
   const item = props.items.find(
     thing => `${thing.id}` === props.match.params.id
   );
 
-  const handleEditClick = ()=>{
-    push(`/item-update/${item.id}`);
-  }
-
-  const handleDeleteClick = ()=>{
-    axios
-      .delete(`http://localhost:3333/items/${item.id}`)
-      .then (res=>{
-        props.setItems(res.data);
-        push('/item-list');
-      })
-      .catch(err=>{
-        console.log(err);
-      })
-  }
-
   if (!props.items.length || !item) {
     return <h2>Loading item data...</h2>;
+  }
+
+  const handleDeleteClick = e => {
+    e.preventDefault();
+    setShowPopup(true);
+  };
+
+  const deleteItem = ()=> {
+    axios
+      .delete(`http://localhost:3333/items/${item.id}`)
+      .then(res => {
+        props.setItems(res.data);
+        setShowPopup(false);
+        push('/item-list');
+      })
+      .catch(err => console.log(err));
+  }
+
+  const closePopup = () => {
+    setShowPopup(false);
   }
 
   return (
@@ -58,12 +65,25 @@ function Item(props) {
         path="/item-list/:id/shipping"
         render={props => <ItemShipping {...props} item={item} />}
       />
-      <button onClick={handleEditClick} className="md-button">
+      <button
+        className="md-button"
+        onClick={() => push(`/update-item/${item.id}`)}
+      >
         Edit
       </button>
-      <button onClick={handleDeleteClick} className="md-button">
+      <button className="md-button" onClick={handleDeleteClick}>
         Delete
       </button>
+
+      { showPopup && 
+        <Popup 
+          title= {`About to delete ${item.name}`}
+          subTitle="Are you sure you want to do that?"
+          onYes={deleteItem} 
+          onNo={closePopup}
+        /> }
+      
+
     </div>
   );
 }
