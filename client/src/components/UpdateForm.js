@@ -16,11 +16,15 @@ const UpdateForm = props => {
   const { id } = useParams();
   // const { id } = props.match.params;
 
-  console.log("id: ", id);
-
   useEffect(()=>{
     axios
-      .get(`http://localhost:3333/`)
+      .get(`http://localhost:3333/itemById/${id}`)
+      .then(res=>{
+        console.log(res);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
   }, []);
 
   const changeHandler = ev => {
