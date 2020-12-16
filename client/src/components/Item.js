@@ -7,15 +7,13 @@ import ItemShipping from './ItemShipping';
 
 function Item(props) {
   const { push } = useHistory();
-  // same as:
-  // const history = useHistory();
-  // const push = history.push;
+  
   const item = props.items.find(
     thing => `${thing.id}` === props.match.params.id
   );
 
   const handleEditClick = ()=>{
-    props.history.push(`/item-update/${item.id}`);
+    push(`/item-update/${item.id}`);
   }
 
   const handleDeleteClick = ()=>{
@@ -23,7 +21,7 @@ function Item(props) {
       .delete(`http://localhost:3333/items/${item.id}`)
       .then (res=>{
         props.setItems(res.data);
-        props.history.push('/item-list');
+        push('/item-list');
       })
       .catch(err=>{
         console.log(err);
