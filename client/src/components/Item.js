@@ -23,6 +23,7 @@ function Item(props) {
       .delete(`http://localhost:3333/items/${item.id}`)
       .then (res=>{
         console.log(res);
+        props.setItems(res.data);
       })
       .catch(err=>{
         console.log(err);
