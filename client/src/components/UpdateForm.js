@@ -19,7 +19,8 @@ const UpdateForm = props => {
   console.log("id: ", id);
 
   useEffect(()=>{
-    
+    axios
+      .get(`http://localhost:3333/`)
   }, []);
 
   const changeHandler = ev => {
