@@ -45,15 +45,14 @@ const UpdateForm = props => {
     axios
       .put(`http://localhost:3333/items/${id}`, item)
       .then(res=>{
-        console.log(res);
+        props.setItems(res.data);
       })
       .catch(err=>{
         console.log(err);
       })
     // make a PUT request to edit the item
   };
-
-  console.log(props);
+  
   return (
     <div>
       <h2>Update Item</h2>
