@@ -53,6 +53,7 @@ const UpdateForm = props => {
     // make a PUT request to edit the item
   };
 
+  console.log(props);
   return (
     <div>
       <h2>Update Item</h2>
