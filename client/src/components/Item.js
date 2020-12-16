@@ -14,6 +14,10 @@ function Item(props) {
     thing => `${thing.id}` === props.match.params.id
   );
 
+  const handleEditClick = ()=>{
+    console.log("clicked edit", item);
+  }
+
   if (!props.items.length || !item) {
     return <h2>Loading item data...</h2>;
   }
