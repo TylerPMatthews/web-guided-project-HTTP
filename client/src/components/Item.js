@@ -18,6 +18,10 @@ function Item(props) {
     props.history.push(`/item-update/${item.id}`);
   }
 
+  const handleDeleteClick = ()=>{
+    
+  }
+
   if (!props.items.length || !item) {
     return <h2>Loading item data...</h2>;
   }
