@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -17,6 +17,8 @@ const UpdateForm = props => {
   // const { id } = props.match.params;
 
   console.log("id: ", id);
+
+
 
   const changeHandler = ev => {
     ev.persist();
