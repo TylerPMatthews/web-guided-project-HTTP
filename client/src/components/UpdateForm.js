@@ -20,6 +20,7 @@ const UpdateForm = props => {
     axios
       .get(`http://localhost:3333/itemById/${id}`)
       .then(res=>{
+        setItem(res.data);
         console.log(res);
       })
       .catch(err=>{
