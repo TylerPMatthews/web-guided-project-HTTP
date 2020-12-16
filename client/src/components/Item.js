@@ -24,6 +24,7 @@ function Item(props) {
       .then (res=>{
         console.log(res);
         props.setItems(res.data);
+        props.history.push('/item-list');
       })
       .catch(err=>{
         console.log(err);
