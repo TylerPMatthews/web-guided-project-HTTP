@@ -21,7 +21,6 @@ const UpdateForm = props => {
       .get(`http://localhost:3333/itemById/${id}`)
       .then(res=>{
         setItem(res.data);
-        console.log(res);
       })
       .catch(err=>{
         console.log(err);
@@ -43,7 +42,8 @@ const UpdateForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("submitted");
+    axios
+      .
     // make a PUT request to edit the item
   };
 
