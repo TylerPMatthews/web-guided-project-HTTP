@@ -18,7 +18,9 @@ const UpdateForm = props => {
 
   console.log("id: ", id);
 
-
+  useEffect(()=>{
+    
+  }, []);
 
   const changeHandler = ev => {
     ev.persist();
