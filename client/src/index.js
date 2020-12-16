@@ -49,7 +49,6 @@ const App = () => {
       <Route
         path="/item-list/:id"
         render={props => {
-          console.log(props.match);
           return<Item {...props} items={items} setItems={setItems} />
         }}
       />
